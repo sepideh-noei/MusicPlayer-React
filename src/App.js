@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+
+import {useState} from 'react';
+import player from './components/player';
 
 function App() {
+  const [songs , setSongs] = useState([
+    {
+      title:"Ahange shad",
+      artist:"Ashavan",
+      img_src:"./images/ashvan.jpg",
+      src:"./music/Ashvan.mp3"
+    },
+    {
+      title:"Zibay man",
+      artist:"Hojatashrafzade",
+      img_src:"./images/hojat-ashrafzade.jpg",
+      src:"./music/Hojat Ashrafzade.mp3"
+    },
+    {
+      title:"Asheghetam",
+      artist:"Mohsenebrahimzade",
+      img_src:"./images/mohsen-ebrahimzade.jpg",
+      src:"./music/Mohsen Ebrahimzade.mp3"
+    }
+  ]);
+
+  const [currentSongIndex, setcurrentSongIndex] = useState(0);
+  const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <player
+        song={songs[currentSongIndex]}
+        nextSong={songs[nextSongIndex]} 
+      />
     </div>
   );
 }
